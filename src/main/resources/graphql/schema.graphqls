@@ -1,0 +1,45 @@
+
+enum UserRoleInput {
+    ADMIN
+    PROFESSOR
+    STUDENT
+}
+
+input RegistrationInput {
+    name: String!
+    email: String!
+    affiliatedSchool: String!
+    password: String!
+    role: UserRoleInput!
+}
+
+input LoginInput {
+    email: String!
+    password: String!
+}
+
+input ChangePasswordInput {
+    email: String! # Ou talvez o ID do usuário se já estiver autenticado
+    oldPassword: String!
+    newPassword: String!
+}
+
+# Tipo para retornar dados do usuário após registro/login
+type UserOutput {
+    id: ID!
+    email: String!
+    name: String!
+    affiliatedSchool: String! # Adicionado para consistência
+    role: String! # Nome do Enum como String
+}
+
+type AuthResponse {
+    token: String!
+    user: UserOutput
+}
+
+type Mutation {
+    register(input: RegistrationInput!): UserOutput
+    login(input: LoginInput!): AuthResponse
+    changePassword(input: ChangePasswordInput!): Boolean # Ou uma mensagem de status
+}
