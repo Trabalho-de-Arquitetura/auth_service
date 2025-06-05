@@ -1,8 +1,7 @@
-package com.authentication.dto;
-
-import com.authentication.dto.input.UserOutput;
+package com.authentication.dto.input;
 
 public class AuthResponse {
+
     private String token;
     private UserOutput user;
     public AuthResponse(String token, UserOutput user) { this.token = token; this.user = user; }
